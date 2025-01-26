@@ -1,11 +1,12 @@
-package com.devspacecinenow.list
+package com.example.connectspace_assincronia
+//COM TURBINE
 
 import app.cash.turbine.test
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.test.*
 
-fun main() = runTest {
+fun main() = runTest { //exemplo COM TURBINE
     // Cria um fluxo que emite dois valores com um atraso entre eles
     val fluxo = flow {
         println("Emitindo valor 1")

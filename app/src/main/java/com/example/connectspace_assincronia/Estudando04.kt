@@ -1,3 +1,4 @@
+package com.example.connectspace_assincronia
 import kotlinx.coroutines.*
 
 fun main() = runBlocking {

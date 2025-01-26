@@ -1,4 +1,4 @@
-package com.devspacecinenow.list
+package com.example.connectspace_assincronia
 
 import app.cash.turbine.test
 import kotlinx.coroutines.delay
