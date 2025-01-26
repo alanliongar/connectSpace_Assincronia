@@ -6,7 +6,7 @@ import java.util.*
 
 fun main() = runBlocking {
     val startTime = System.currentTimeMillis()
-    println("Início do processo de fazer cafe - Sincrono | Hora: ${getCurrentTime()}")
+    println("Inicio do processo de fazer cafe - Sincrono | Hora: ${getCurrentTime()}")
 
     pegarPanelinha()
     colocarAguaNaPanelinha()
@@ -26,57 +26,57 @@ fun main() = runBlocking {
 }
 
 suspend fun pegarPanelinha() {
-    logStep("Pegando a panelinha...")
+    logStep("01 - Pegando a panelinha...")
     delay(500)
 }
 
 suspend fun colocarAguaNaPanelinha() {
-    logStep("Colocando agua na panelinha...")
+    logStep("02 - Colocando agua na panelinha...")
     delay(500)
 }
 
 suspend fun colocarPanelinhaNoFogao() {
-    logStep("Colocando a panelinha no fogao...")
+    logStep("03 - Colocando a panelinha no fogao...")
     delay(500)
 }
 
 suspend fun ligarFogao() {
-    logStep("Ligando o fogao...")
+    logStep("04 - Ligando o fogao...")
     delay(500)
 }
 
 suspend fun aguardarFervuraDaAgua() {
-    logStep("Aguardando a fervura da agua...")
+    logStep("05 - Aguardando a fervura da agua...")
     delay(2000)
 }
 
 suspend fun separarKit() {
-    logStep("Separando o funil, filtro e jarrinho...")
+    logStep("06 - Separando o funil, filtro e jarrinho...")
     delay(500)
 }
 
 suspend fun colocarFiltroNoFunilEPosicionar() {
-    logStep("Colocando o filtro no funil e posicionando no jarrinho...")
+    logStep("07 - Colocando o filtro no funil e posicionando no jarrinho...")
     delay(500)
 }
 
 suspend fun colocarPoNoFiltro() {
-    logStep("Colocando o po de cafe no filtro...")
+    logStep("08 - Colocando o po de cafe no filtro...")
     delay(500)
 }
 
 suspend fun despejarAguaNoCafe() {
-    logStep("Despejando a agua quente no cafe...")
+    logStep("09 - Despejando a agua quente no cafe...")
     delay(1000)
 }
 
 suspend fun aguardarPassagemCompletaDoCafe() {
-    logStep("Aguardando a passagem completa do cafe pelo filtro...")
+    logStep("10 - Aguardando a passagem completa do cafe pelo filtro...")
     delay(1500)
 }
 
 suspend fun servirCafe() {
-    logStep("Servindo o cafe (com ou sem acucar)...")
+    logStep("11 - Servindo o cafe (com ou sem acucar)...")
     delay(500)
 }
 

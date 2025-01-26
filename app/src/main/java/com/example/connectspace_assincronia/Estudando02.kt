@@ -2,136 +2,33 @@ package com.example.connectspace_assincronia
 
 import kotlinx.coroutines.*
 
-fun main(){
-    val disp = Dispatchers.IO
-    runBlocking {
-        launch {
-            repeat(3) {
-                println("Corrotina 1 - Iteracao $it")
-                yield()
-            }
-        }
-        launch {
-            repeat(3) {
-                println("Corrotina 2 - Iteracao $it")
-                yield()
-            }
-        }
-    }
-}
-
-
-
-
-
-
-/*
-
 fun main() = runBlocking {
-    try {
-        withTimeout(2000) {
-            repeat(3) {
-                println("Executando iteração $it")
-                delay(1000)
-            }
-        }
-    } catch (e: TimeoutCancellationException) {
-        println("Tempo limite excedido!")
+    var resultado1: Int? = null
+    var resultado2: Int? = null
+
+    println("01 - O nome da thread eh: ${Thread.currentThread().name}")
+
+    // Lançando a primeira corrotina
+    val job1 = launch(Dispatchers.Default) {
+        delay(1000) // Simula uma operação assíncrona
+        println("02 - O nome da thread eh: ${Thread.currentThread().name}")
+        resultado1 = 50 // Atribui um valor ao resultado
     }
-}
 
-
-fun main() = runBlocking {
-    val resultado = withTimeoutOrNull(2000) {
-        repeat(3) {
-            println("Executando iteração $it")
-            delay(1000)
-        }
-        "Concluído"
+    // Lançando a segunda corrotina
+    val job2 = launch(Dispatchers.Default) {
+        delay(500) // Simula uma operação assíncrona
+        println("03 - O nome da thread eh: ${Thread.currentThread().name}")
+        resultado2 = 65 // Atribui um valor ao resultado
     }
-    println("Resultado: $resultado")
+
+    // Aguarda todas as corrotinas finalizarem
+    joinAll(job1,job2)
+
+    /*job1.join()
+    job2.join()*/
+
+    println("04 - O resultado da execucao da corrotina 1 eh: $resultado1")
+    println("05 - O resultado da execucao da corrotina 2 eh: $resultado2")
 }
 
-
-fun main() = runBlocking {
-    println("Executando no dispatcher: ${Thread.currentThread().name}")
-    withContext(Dispatchers.IO) {
-        println("Executando em IO dispatcher: ${Thread.currentThread().name}")
-    }
-}
-
-
-
-fun main() = runBlocking {
-    val job = launch {
-        delay(1000)
-        println("Corrotina concluída")
-    }
-    println("Esperando o job terminar...")
-    job.join()
-    println("Job terminado!")
-}
-
-
-
-fun main() = runBlocking {
-    val resultado = async {
-        delay(1000)
-        "Resultado da coroutine"
-    }
-    println("Esperando o resultado...")
-    println("Resultado: ${resultado.await()}")
-}
-
-
-fun main() = runBlocking {
-    println("Antes do delay")
-    delay(1000)
-    println("Depois do delay")
-}
-
-
-fun main() = runBlocking {
-    launch {
-        repeat(3) {
-            println("Corrotina 1 - Iteração $it")
-            yield()
-        }
-    }
-    launch {
-        repeat(3) {
-            println("Corrotina 2 - Iteração $it")
-            yield()
-        }
-    }
-}
-
-
-
-fun main() = runBlocking {
-    val resultado = async {
-        delay(1000)
-        42
-    }
-    println("Resultado do async: ${resultado.await()}")
-}
-
-
-
-fun main() = runBlocking {
-    launch {
-        delay(1000)
-        println("Corrotina executada com launch!")
-    }
-    println("Executando corrotina com launch")
-}
-
-
-
-fun main() = runBlocking {
-    println("Início do runBlocking")
-    delay(1000)
-    println("Fim do runBlocking")
-}
-
-*/

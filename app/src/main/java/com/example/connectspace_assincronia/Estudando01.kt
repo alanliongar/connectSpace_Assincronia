@@ -1,33 +1,38 @@
 package com.example.connectspace_assincronia
+
 import kotlinx.coroutines.*
+import java.lang.*
 
-fun main1() {
-    val scope = CoroutineScope(Dispatchers.Default) // Cria um escopo de coroutines
-
-    // Lança uma coroutine no escopo
-    scope.launch {
-        coroutineScope {  }
-        repeat(5) { i ->
-            println("Executando tarefa $i")
-            delay(1000) // Simula uma operação demorada
+fun main() {
+    var resultado: Int? = null // Variável para capturar o valor retornado
+    var resultado2: Int? = null
+    println("01 - O nome da thread eh: ${Thread.currentThread().name}")
+    val thread = Thread {
+        println("02 - O nome da thread eh: ${Thread.currentThread().name}")
+        runBlocking {
+            println("03 - O nome da thread eh: ${Thread.currentThread().name}")
+            delay(1000)
+            resultado = 50 // Atribui o valor 50 à variável compartilhada
         }
     }
 
-    // Aguarda 3 segundos e cancela o escopo
-    Thread.sleep(3000)
-    scope.cancel() // Cancela todas as coroutines no escopo
-    println("Escopo cancelado.")
-}
-
-fun main(){
-    val thread = Thread{
+    val thread2 = Thread {
+        println("04 - O nome da thread eh: ${Thread.currentThread().name}")
         runBlocking {
-            delay(2000)
-            50
+            println("05 - O nome da thread eh: ${Thread.currentThread().name}")
+            delay(1000)
+            resultado2 = 65 // Atribui o valor 50 à variável compartilhada
         }
     }
     thread.start()
     thread.join()
+    thread2.start()
+    thread2.join()
 
-    println("O nome da variavel eh: ${thread::class.simpleName}")
+    println("06 - O nome da variavel eh: ${thread::class.simpleName}")
+    println("07 - O valor da variavel eh: ${thread}")
+    println("08 - O resultado da execucao eh: $resultado") // Imprime o valor capturado
+    println("09 - O nome da variavel eh: ${thread2::class.simpleName}")
+    println("10 - O valor da variavel eh: ${thread2}")
+    println("11 - O resultado da execucao eh: $resultado2") // Imprime o valor capturado
 }
