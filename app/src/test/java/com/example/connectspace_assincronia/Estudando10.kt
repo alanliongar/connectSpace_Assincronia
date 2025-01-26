@@ -1,5 +1,5 @@
 package com.example.connectspace_assincronia
-
+//Sem turbine 02
 // Importações necessárias
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.*
@@ -14,12 +14,12 @@ class TestandoCodigo {
     @Test
     fun testarCodigo() = runTest(testDispatcher) {
         // Define o fluxo
-        val fluxo = MutableStateFlow("Primeiro valor emitido")
-        //Note que por ser um mutablestateflow, o primeiro valor assinado a ele nunca é contado como primeiro.
-        //Entender o real motivo de estar acontecendo isso aqui!
+        var result: String? = null
+        var fluxo = MutableStateFlow<String?>(null)
 
         // Lança uma corrotina para emitir valores no fluxo
         val emissor = backgroundScope.launch {
+            delay(500)
             println("Iniciando emissao do fluxo...")
             fluxo.emit("Carregando dados...") // "Primeiro valor"
             println("Valor 'Carregando dados...' emitido")
@@ -35,15 +35,13 @@ class TestandoCodigo {
         // Coleta o terceiro valor emitido
         val coletor = backgroundScope.launch {
             println("Iniciando o teste do fluxo...")
-            val result = fluxo.drop(0).first() // Coleta o terceiro valor
+            result = fluxo.drop(2).first()
             println("Valor coletado: $result")
             assertEquals("Processando dados...", result)
         }
 
         // Aguarda a conclusão das corrotinas
-        emissor.join()
-        coletor.join()
-
+        joinAll(emissor, coletor)
         println("Teste concluído com sucesso!")
     }
 }
