@@ -3,6 +3,11 @@ package com.example.connectspace_assincronia
 import kotlinx.coroutines.*
 import java.lang.*
 
+/*
+* 1 - O objetivo desse programa é só declarar duas threads
+* de baixo nível, e observar o comportamento delas no terminal.
+* */
+
 fun main() {
     var resultado: Int? = null // Variável para capturar o valor retornado
     var resultado2: Int? = null
@@ -29,10 +34,10 @@ fun main() {
     thread2.start()
     thread2.join()
 
-    println("06 - O nome da variavel eh: ${thread::class.simpleName}")
+    println("06 - O nome do tipo da variavel eh: ${thread::class.simpleName}")
     println("07 - O valor da variavel eh: ${thread}")
     println("08 - O resultado da execucao eh: $resultado") // Imprime o valor capturado
-    println("09 - O nome da variavel eh: ${thread2::class.simpleName}")
+    println("09 - O nome do tipo da variavel eh: ${thread2::class.simpleName}")
     println("10 - O valor da variavel eh: ${thread2}")
     println("11 - O resultado da execucao eh: $resultado2") // Imprime o valor capturado
 }
